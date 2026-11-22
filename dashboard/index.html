@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <h1>Token Launch Radar</h1>
+      <p class="tagline">Protocols that record no token yet, ranked by what a launch could be worth — and how to farm each one before it happens.</p>
+    </div>
+    <div class="masthead-stats" id="masthead-stats"></div>
+  </div>
+</header>
+
+<main>
+  <section id="board-view">
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search name or slug…" aria-label="Search protocols">
+      <select id="filter-category" aria-label="Filter by category"></select>
+      <select id="filter-chain" aria-label="Filter by chain"></select>
+      <label class="toggle"><input id="filter-watchlist" type="checkbox"> Watchlist only</label>
+      <select id="sort" aria-label="Sort the board">
+        <option value="rank">Sort: implied value</option>
+        <option value="tvl">Sort: TVL</option>
+        <option value="growth">Sort: 7-day growth</option>
+        <option value="age">Sort: longest running</option>
+      </select>
+      <span class="count" id="row-count"></span>
+    </div>
+    <table id="board">
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Protocol</th>
+          <th>Category</th>
+          <th>Chains</th>
+          <th class="num">TVL</th>
+          <th class="num">7d</th>
+          <th class="num">Implied value</th>
+          <th class="num">Value / TVL</th>
+        </tr>
+      </thead>
+      <tbody id="board-body"></tbody>
+    </table>
+    <p class="empty" id="empty-note" hidden>No protocol matches those filters. Loosen one and the board fills again.</p>
+  </section>
+
+  <section id="detail-view" hidden>
+    <button id="back" type="button">← Back to the board</button>
+    <div id="detail-body"></div>
+  </section>
+
+  <footer class="method">
+    <h2>How the board is priced</h2>
+    <p>Protocols whose token already trades set the rate: for each category the board takes the median market-cap-to-TVL ratio of its tokenised members. A pre-token protocol is priced at its own TVL times its category rate, adjusted for its seven-day TVL growth, for how long it has run with no token, and for how many chains it operates on. The board's universe is plausible launches only: wrapped, staked and bridged products of tokens that already trade, canonical bridges, exchange entries and superseded old versions are set aside before ranking, the same line the snapshot's watchlist draws. The figure is the board's own claim about a hypothetical launch, not a prediction that a token is coming. Data: a sealed DefiLlama snapshot; the page runs entirely from local files.</p>
+  </footer>
+</main>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
